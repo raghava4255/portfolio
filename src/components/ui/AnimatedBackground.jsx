@@ -37,9 +37,11 @@ export function AnimatedBackground({ theme }) {
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
-          const distance = Math.hypot(dx, dy);
+          const distSq = dx * dx + dy * dy;
+          const radiusSq = mouse.radius * mouse.radius;
           
-          if (distance < mouse.radius) {
+          if (distSq < radiusSq) {
+            const distance = Math.sqrt(distSq);
             const force = (mouse.radius - distance) / mouse.radius;
             const directionX = dx / distance;
             const directionY = dy / distance;
@@ -51,18 +53,10 @@ export function AnimatedBackground({ theme }) {
       }
 
       draw() {
-        ctx.fillStyle = theme === 'dark' ? 'rgba(147, 51, 234, 0.55)' : 'rgba(99, 102, 241, 0.55)';
-        if (theme === 'dark') {
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = 'rgba(147, 51, 234, 0.7)';
-        } else {
-          ctx.shadowBlur = 6;
-          ctx.shadowColor = 'rgba(99, 102, 241, 0.4)';
-        }
+        ctx.fillStyle = theme === 'dark' ? 'rgba(147, 51, 234, 0.75)' : 'rgba(99, 102, 241, 0.75)';
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset
       }
     }
 
@@ -76,13 +70,15 @@ export function AnimatedBackground({ theme }) {
 
     const drawLines = () => {
       const maxDistance = 100;
+      const maxDistanceSq = maxDistance * maxDistance;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
           const dy = particles[a].y - particles[b].y;
-          const distance = Math.hypot(dx, dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < maxDistance) {
+          if (distSq < maxDistanceSq) {
+            const distance = Math.sqrt(distSq);
             const opacity = 1 - distance / maxDistance;
             ctx.strokeStyle = theme === 'dark' 
               ? `rgba(8, 145, 178, ${opacity * 0.15})` 
@@ -98,9 +94,11 @@ export function AnimatedBackground({ theme }) {
         if (mouse.x !== null && mouse.y !== null) {
           const dx = particles[a].x - mouse.x;
           const dy = particles[a].y - mouse.y;
-          const distance = Math.hypot(dx, dy);
+          const distSq = dx * dx + dy * dy;
+          const mouseRadiusSq = mouse.radius * mouse.radius;
           
-          if (distance < mouse.radius) {
+          if (distSq < mouseRadiusSq) {
+            const distance = Math.sqrt(distSq);
             const opacity = (1 - distance / mouse.radius) * 0.25;
             ctx.strokeStyle = theme === 'dark'
               ? `rgba(147, 51, 234, ${opacity})`

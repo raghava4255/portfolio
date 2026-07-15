@@ -43,7 +43,7 @@ export function HeroSection() {
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.scrollY - offset;
       
       window.scrollTo({
         top: offsetPosition,
@@ -64,26 +64,14 @@ export function HeroSection() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 text-center z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/5 dark:border-cyan-400/20 dark:bg-cyan-400/5 text-blue-600 dark:text-cyan-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 dark:bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500 dark:bg-cyan-500"></span>
-          </span>
-          Recruiter-Ready Developer Portfolio
-        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-800 dark:text-white leading-tight mb-4"
+          className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-slate-800 dark:text-white leading-tight mb-4"
         >
-          Hi, I'm <span className="text-gradient font-black">{profile.name}</span>
+          Hi, I'm <span className="block mt-2 text-gradient font-black">{profile.name}</span>
         </motion.h1>
 
         <motion.h2
