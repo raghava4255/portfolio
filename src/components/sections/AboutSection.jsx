@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { User, GraduationCap, MapPin, Mail, Calendar, Server, Container, Code, Settings, Briefcase, Award, Phone } from 'lucide-react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { profile } from '../../data/profile';
+import profileImg from '../../assets/profile.png';
 
 const CORE_SERVICES = [
   {
@@ -56,7 +57,7 @@ export function AboutSection() {
                 <div className="relative shrink-0 w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[3px] bg-gradient-to-tr from-blue-600 via-neon-purple to-neon-cyan shadow-lg shadow-blue-500/20">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-950 via-purple-950 to-slate-950 flex items-center justify-center">
                     <img 
-                      src="/src/assets/profile.png" 
+                      src={profileImg} 
                       alt={profile.name} 
                       className="w-full h-full object-cover object-top"
                       onError={(e) => {
