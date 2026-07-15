@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Server, Terminal } from 'lucide-react';
+import { Server, Terminal, Code, Database } from 'lucide-react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { SkillCard } from '../ui/SkillCard';
 import { profile } from '../../data/profile';
@@ -51,6 +51,26 @@ export function SkillsSection() {
             </div>
           </motion.div>
 
+          {/* Frontend Block */}
+          <motion.div variants={itemVariants} className="glass-card p-6 sm:p-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/5 dark:bg-pink-500/5 blur-2xl group-hover:bg-pink-500/10 dark:group-hover:bg-pink-500/10 transition-all duration-300" />
+            
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2.5 rounded-xl bg-pink-500/10 dark:bg-pink-400/10 border border-pink-500/20 dark:border-pink-400/20 text-pink-600 dark:text-pink-400">
+                <Code size={22} />
+              </div>
+              <h4 className="text-xl font-bold text-slate-800 dark:text-slate-100">
+                Frontend Development
+              </h4>
+            </div>
+
+            <div className="space-y-6">
+              {profile.skills.frontend.map((skill, idx) => (
+                <SkillCard key={idx} skill={skill} />
+              ))}
+            </div>
+          </motion.div>
+
           {/* DevOps Block */}
           <motion.div variants={itemVariants} className="glass-card p-6 sm:p-8 relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-neon-purple/5 dark:bg-purple-600/5 blur-2xl group-hover:bg-neon-purple/10 dark:group-hover:bg-purple-600/10 transition-all duration-300" />
@@ -60,12 +80,32 @@ export function SkillsSection() {
                 <Terminal size={22} />
               </div>
               <h4 className="text-xl font-bold text-slate-800 dark:text-slate-100">
-                DevOps & Tooling
+                DevOps & Cloud
               </h4>
             </div>
 
             <div className="space-y-6">
               {profile.skills.devops.map((skill, idx) => (
+                <SkillCard key={idx} skill={skill} />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Databases & Tools Block */}
+          <motion.div variants={itemVariants} className="glass-card p-6 sm:p-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 dark:bg-emerald-500/5 blur-2xl group-hover:bg-emerald-500/10 dark:group-hover:bg-emerald-500/10 transition-all duration-300" />
+            
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 dark:bg-emerald-400/10 border border-emerald-500/20 dark:border-emerald-400/20 text-emerald-600 dark:text-emerald-400">
+                <Database size={22} />
+              </div>
+              <h4 className="text-xl font-bold text-slate-800 dark:text-slate-100">
+                Databases & Tools
+              </h4>
+            </div>
+
+            <div className="space-y-6">
+              {profile.skills.databaseTools.map((skill, idx) => (
                 <SkillCard key={idx} skill={skill} />
               ))}
             </div>

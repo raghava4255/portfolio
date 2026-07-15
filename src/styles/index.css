@@ -7,45 +7,58 @@
   --color-neon-purple: #bd00ff;
   --color-neon-cyan: #00ffff;
   --color-neon-pink: #ff007f;
-  
+
   --color-dark-bg: #030014;
   --color-dark-card: rgba(10, 7, 30, 0.45);
-  
+
   --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
-  
+
   --animate-float-slow: float-slow 15s ease-in-out infinite;
   --animate-float-medium: float-medium 12s ease-in-out infinite;
   --animate-float-fast: float-fast 8s ease-in-out infinite;
   --animate-pulse-glow: pulse-glow 3s infinite alternate;
 
   @keyframes float-slow {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px) scale(1);
     }
+
     50% {
       transform: translateY(-30px) translateX(20px) scale(1.05);
     }
   }
+
   @keyframes float-medium {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px) scale(1.03);
     }
+
     50% {
       transform: translateY(35px) translateX(-25px) scale(0.97);
     }
   }
+
   @keyframes float-fast {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px) scale(0.95);
     }
+
     50% {
       transform: translateY(-20px) translateX(-20px) scale(1.02);
     }
   }
+
   @keyframes pulse-glow {
     0% {
       box-shadow: 0 0 15px rgba(189, 0, 255, 0.15), 0 0 30px rgba(0, 255, 255, 0.08);
     }
+
     100% {
       box-shadow: 0 0 30px rgba(189, 0, 255, 0.4), 0 0 50px rgba(0, 255, 255, 0.2);
     }
@@ -58,11 +71,11 @@
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   body {
     @apply bg-slate-50 text-slate-900 transition-colors duration-300 overflow-x-hidden font-sans antialiased;
   }
-  
+
   body.dark {
     @apply bg-[var(--color-dark-bg)] text-slate-100;
   }
@@ -122,7 +135,7 @@ body.dark ::-webkit-scrollbar-thumb:hover {
 
   .dark .glass-card-hover:hover {
     border-color: rgba(0, 255, 255, 0.35);
-    box-shadow: 
+    box-shadow:
       0 0 25px rgba(0, 255, 255, 0.15),
       0 0 50px rgba(189, 0, 255, 0.15),
       0 12px 30px -4px rgba(0, 0, 0, 0.4);
@@ -151,9 +164,13 @@ body.dark ::-webkit-scrollbar-thumb:hover {
   }
 
   .dark .accent-gradient-bg {
-    @apply bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-white shadow-none hover:shadow-[0_0_20px_rgba(189,0,255,0.5)] transition-all duration-300;
+    @apply bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-white shadow-none transition-all duration-300;
     position: relative;
     overflow: hidden;
+  }
+
+  .dark .accent-gradient-bg:hover {
+    box-shadow: 0 0 20px rgba(189, 0, 255, 0.5);
   }
 
   /* Button shine swipe animation */
@@ -161,7 +178,7 @@ body.dark ::-webkit-scrollbar-thumb:hover {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transform: translateX(-100%);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -175,18 +192,22 @@ body.dark ::-webkit-scrollbar-thumb:hover {
   }
 
   .dark .accent-outline-btn {
-    @apply border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(0,255,255,0.2)] transition-all duration-300;
+    @apply border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300;
+  }
+
+  .dark .accent-outline-btn:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
   }
 
   .bg-grid-pattern {
-    background-image: 
+    background-image:
       linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   .dark .bg-grid-pattern {
-    background-image: 
+    background-image:
       linear-gradient(rgba(189, 0, 255, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(189, 0, 255, 0.03) 1px, transparent 1px);
     background-size: 48px 48px;

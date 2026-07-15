@@ -35,7 +35,7 @@ const PIPELINES = {
     { type: 'output', text: ' 2 files changed, 24 insertions(+)' },
     { type: 'output', text: 'Enumerating objects: 5, done.' },
     { type: 'output', text: 'Writing objects: 100% (3/3), 642 bytes | 642.00 KiB/s, done.' },
-    { type: 'output', text: 'To github.com/ramuchallapalli/portfolio.git' },
+    { type: 'output', text: 'To github.com/raghava4255/portfolio.git' },
     { type: 'output', text: '   b8a1c9e..d7c2f0a  main -> main' },
     { type: 'output', text: 'GitHub Actions: Run ID 992817293 triggered.' },
     { type: 'output', text: 'Pipeline: Build (Success) -> Code Quality (Success) -> Deploy (Staging: Success)' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, GraduationCap, MapPin, Mail, Calendar, Server, Container, Code, Settings } from 'lucide-react';
+import { User, GraduationCap, MapPin, Mail, Calendar, Server, Container, Code, Settings, Briefcase, Award, Phone } from 'lucide-react';
 import { SectionTitle } from '../ui/SectionTitle';
 import { profile } from '../../data/profile';
 
@@ -48,7 +48,7 @@ export function AboutSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
         >
-          {/* Left Summary Box */}
+          {/* Row 1 Left: Summary & Contact */}
           <motion.div variants={itemVariants} className="md:col-span-7 space-y-6">
             <div className="glass-card p-6 sm:p-8">
               <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800 dark:text-white">
@@ -56,10 +56,10 @@ export function AboutSection() {
                 Professional Summary
               </h4>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                I am a focused software developer based in Hyderabad, specializing in the Microsoft .NET stack and DevOps lifecycle. I enjoy bridging the gap between coding robust backend web services and setting up efficient pipelines. My goal is to build containers, deploy microservices, and write API integrations that satisfy user needs perfectly.
+                {profile.bio}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200/50 dark:border-white/5 pt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200/50 dark:border-white/5 pt-6">
                 <div className="flex items-center gap-2.5">
                   <MapPin size={16} className="text-neon-purple dark:text-purple-400 shrink-0" />
                   <span>{profile.address}</span>
@@ -70,36 +70,15 @@ export function AboutSection() {
                     {profile.email}
                   </a>
                 </div>
-              </div>
-            </div>
-
-            {/* Education Box */}
-            <div className="glass-card p-6 sm:p-8">
-              <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800 dark:text-white">
-                <GraduationCap size={20} className="text-blue-600 dark:text-cyan-400" />
-                Education & Learning
-              </h4>
-              {profile.education.map((edu, idx) => (
-                <div key={idx} className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1.5 space-y-2">
-                  <div className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[14px]" />
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold text-slate-500 mb-1">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} /> {edu.duration}
-                    </span>
-                    <span className="text-blue-600 dark:text-cyan-400">{edu.institution}</span>
-                  </div>
-                  <h5 className="text-base font-bold text-slate-800 dark:text-slate-200">
-                    {edu.degree}
-                  </h5>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {edu.description}
-                  </p>
+                <div className="flex items-center gap-2.5">
+                  <Phone size={16} className="text-neon-purple dark:text-purple-400 shrink-0" />
+                  <span>{profile.phone}</span>
                 </div>
-              ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Core Services */}
+          {/* Row 1 Right: Core Focus */}
           <motion.div variants={itemVariants} className="md:col-span-5 space-y-6">
             <div className="text-slate-800 dark:text-white mb-2">
               <h4 className="text-xl font-bold flex items-center gap-2">
@@ -127,6 +106,90 @@ export function AboutSection() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Row 2: Work Experience & Education/Certifications */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mt-8"
+        >
+          {/* Work Experience Column */}
+          <motion.div variants={itemVariants} className="md:col-span-6 space-y-6">
+            <div className="glass-card p-6 sm:p-8">
+              <h4 className="text-xl font-bold mb-6 flex items-center gap-2 text-slate-800 dark:text-white">
+                <Briefcase size={20} className="text-blue-600 dark:text-cyan-400" />
+                Work Experience
+              </h4>
+              {profile.workExperience.map((work, idx) => (
+                <div key={idx} className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1.5 space-y-3">
+                  <div className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[14px]" />
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold text-slate-500 mb-1">
+                    <span className="flex items-center gap-1">
+                      <Calendar size={12} /> {work.duration}
+                    </span>
+                    <span className="text-blue-600 dark:text-cyan-400">{work.company}</span>
+                  </div>
+                  <h5 className="text-base font-bold text-slate-800 dark:text-slate-200">
+                    {work.role}
+                  </h5>
+                  <ul className="list-disc list-inside space-y-1.5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-1">
+                    {work.highlights.map((highlight, hIdx) => (
+                      <li key={hIdx}>{highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Education & Certifications Column */}
+          <motion.div variants={itemVariants} className="md:col-span-6 space-y-6">
+            {/* Education Box */}
+            <div className="glass-card p-6 sm:p-8">
+              <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800 dark:text-white">
+                <GraduationCap size={20} className="text-blue-600 dark:text-cyan-400" />
+                Education
+              </h4>
+              <div className="space-y-6">
+                {profile.education.map((edu, idx) => (
+                  <div key={idx} className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1 space-y-1">
+                    <div className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[10px]" />
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold text-slate-500">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={12} /> {edu.duration}
+                      </span>
+                      <span className="text-blue-600 dark:text-cyan-400">{edu.institution}</span>
+                    </div>
+                    <h5 className="text-base font-bold text-slate-800 dark:text-slate-200">
+                      {edu.degree}
+                    </h5>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      {edu.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications Box */}
+            <div className="glass-card p-6 sm:p-8">
+              <h4 className="text-xl font-bold mb-4 flex items-center gap-2 text-slate-800 dark:text-white">
+                <Award size={20} className="text-blue-600 dark:text-cyan-400" />
+                Internships & Certifications
+              </h4>
+              <ul className="space-y-3">
+                {profile.certifications.map((cert, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neon-purple dark:bg-purple-400 mt-2 shrink-0" />
+                    <span>{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         </motion.div>
       </div>
