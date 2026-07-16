@@ -155,17 +155,30 @@ export function AnimatedBackground({ theme }) {
     <>
       {/* Moving Blurred Neon Gradient Orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none select-none z-0 opacity-40 dark:opacity-65">
-        <div className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-cyan/20 dark:bg-neon-cyan/35 blur-[120px] animate-float-slow" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-purple/20 dark:bg-neon-purple/35 blur-[120px] animate-float-medium" />
-        <div className="absolute top-[35%] right-[15%] w-[35vw] h-[35vw] rounded-full bg-neon-pink/15 dark:bg-neon-pink/25 blur-[100px] animate-float-fast" />
+        <div 
+          className="absolute top-[10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-cyan/20 dark:bg-neon-cyan/35 blur-[120px] animate-float-slow" 
+          style={{ willChange: 'transform' }}
+        />
+        <div 
+          className="absolute bottom-[10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-neon-purple/20 dark:bg-neon-purple/35 blur-[120px] animate-float-medium" 
+          style={{ willChange: 'transform' }}
+        />
+        <div 
+          className="absolute top-[35%] right-[15%] w-[35vw] h-[35vw] rounded-full bg-neon-pink/15 dark:bg-neon-pink/25 blur-[100px] animate-float-fast" 
+          style={{ willChange: 'transform' }}
+        />
       </div>
 
-      {/* Radial Mask Grid Layer */}
+      {/* Grid Pattern Layer */}
+      <div className="fixed inset-0 bg-grid-pattern opacity-50 dark:opacity-80 pointer-events-none z-1" />
+      
+      {/* High-Performance Radial Overlay (replaces expensive CSS mask-image) */}
       <div 
-        className="fixed inset-0 bg-grid-pattern opacity-65 dark:opacity-100 pointer-events-none z-1" 
+        className="fixed inset-0 pointer-events-none z-1"
         style={{
-          maskImage: 'radial-gradient(circle at 50% 50%, black 15%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(circle at 50% 50%, black 15%, transparent 80%)'
+          background: theme === 'dark'
+            ? 'radial-gradient(circle at 50% 50%, transparent 15%, #030014 80%)'
+            : 'radial-gradient(circle at 50% 50%, transparent 15%, #f5f7fa 80%)'
         }}
       />
       {/* Node Net Canvas Layer */}

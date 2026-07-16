@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code2, Server, Container } from 'lucide-react';
 
 export function ProjectCard({ project }) {
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMouseX(e.clientX - rect.left);
+    setMouseY(e.clientY - rect.top);
+  };
+
+  const getSpotlightColor = (category) => {
+    switch (category) {
+      case 'Web API':
+        return 'rgba(6, 182, 212, 0.12)';
+      case 'DevOps':
+        return 'rgba(168, 85, 247, 0.12)';
+      default:
+        return 'rgba(236, 72, 153, 0.12)';
+    }
+  };
+
   const getProjectIcon = (category) => {
     switch (category) {
       case 'Web API':
@@ -57,8 +78,20 @@ export function ProjectCard({ project }) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.4 }}
       whileHover={{ y: -6 }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className="glass-card glass-card-hover group flex flex-col justify-between overflow-hidden h-full border border-slate-200/50 dark:border-white/5 relative"
     >
+      {/* Category Spotlight Overlay */}
+      {isHovered && (
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
+          style={{
+            background: `radial-gradient(220px circle at ${mouseX}px ${mouseY}px, ${getSpotlightColor(project.category)}, transparent 80%)`,
+          }}
+        />
+      )}
       <div>
         {/* Schematic header mockup */}
         <div className="h-44 w-full bg-slate-100 dark:bg-slate-950 border-b border-slate-200/50 dark:border-white/5 flex items-center justify-center relative overflow-hidden">

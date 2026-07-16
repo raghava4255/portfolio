@@ -4,6 +4,7 @@ import { useTheme } from './hooks/useTheme';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { AnimatedBackground } from './components/ui/AnimatedBackground';
+import { CursorGlow } from './components/ui/CursorGlow';
 import { Loader } from './components/ui/Loader';
 import Home from './pages/Home';
 import { ArrowUp } from 'lucide-react';
@@ -50,6 +51,9 @@ export default function App() {
           >
             {/* Interactive Grid & Canvas particles background */}
             <AnimatedBackground theme={theme} />
+
+            {/* Custom ambient spotlight cursor glow */}
+            <CursorGlow />
 
             {/* Sticky Navigation */}
             <Navbar theme={theme} toggleTheme={toggleTheme} />

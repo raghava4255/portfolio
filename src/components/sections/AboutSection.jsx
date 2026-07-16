@@ -145,8 +145,21 @@ export function AboutSection() {
                 Work Experience
               </h4>
               {profile.workExperience.map((work, idx) => (
-                <div key={idx} className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1.5 space-y-3">
-                  <div className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[14px]" />
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.12 }}
+                  className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1.5 space-y-3"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 300, delay: idx * 0.12 + 0.2 }}
+                    className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[14px]"
+                  />
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold text-slate-500 mb-1">
                     <span className="flex items-center gap-1">
                       <Calendar size={12} /> {work.duration}
@@ -161,7 +174,7 @@ export function AboutSection() {
                       <li key={hIdx}>{highlight}</li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -176,8 +189,21 @@ export function AboutSection() {
               </h4>
               <div className="space-y-6">
                 {profile.education.map((edu, idx) => (
-                  <div key={idx} className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1 space-y-1">
-                    <div className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[10px]" />
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: idx * 0.12 }}
+                    className="relative pl-6 border-l border-slate-300 dark:border-slate-800 py-1 space-y-1"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", stiffness: 300, delay: idx * 0.12 + 0.2 }}
+                      className="absolute w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-cyan-400 left-[-5px] top-[10px]"
+                    />
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-semibold text-slate-500">
                       <span className="flex items-center gap-1">
                         <Calendar size={12} /> {edu.duration}
@@ -190,7 +216,7 @@ export function AboutSection() {
                     <p className="text-sm text-slate-600 dark:text-slate-400">
                       {edu.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

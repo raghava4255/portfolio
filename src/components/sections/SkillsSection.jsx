@@ -46,7 +46,7 @@ export function SkillsSection() {
 
             <div className="space-y-6">
               {profile.skills.backend.map((skill, idx) => (
-                <SkillCard key={idx} skill={skill} />
+                <SkillCard key={idx} skill={skill} index={idx} />
               ))}
             </div>
           </motion.div>
@@ -66,7 +66,7 @@ export function SkillsSection() {
 
             <div className="space-y-6">
               {profile.skills.frontend.map((skill, idx) => (
-                <SkillCard key={idx} skill={skill} />
+                <SkillCard key={idx} skill={skill} index={idx} />
               ))}
             </div>
           </motion.div>
@@ -86,7 +86,7 @@ export function SkillsSection() {
 
             <div className="space-y-6">
               {profile.skills.devops.map((skill, idx) => (
-                <SkillCard key={idx} skill={skill} />
+                <SkillCard key={idx} skill={skill} index={idx} />
               ))}
             </div>
           </motion.div>
@@ -106,7 +106,7 @@ export function SkillsSection() {
 
             <div className="space-y-6">
               {profile.skills.databaseTools.map((skill, idx) => (
-                <SkillCard key={idx} skill={skill} />
+                <SkillCard key={idx} skill={skill} index={idx} />
               ))}
             </div>
           </motion.div>
